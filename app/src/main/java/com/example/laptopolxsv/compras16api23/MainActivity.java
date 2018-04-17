@@ -71,15 +71,29 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void marcarSeleccionados() {
-        for (Compras compra: MainActivity.listaCompras) {
-            if(compra.isEstado()) {
-                for (int i=0 ; i < MainActivity.listaProductos.size() ; i++) {
-                    Productos p=existeProducto(adapter.getItem(i).getNombre());
-                    if(p!=null && p.getNombre().equals(compra.getProducto().getNombre()))
-                        lista.setItemChecked(MainActivity.listaProductos.indexOf(p),true);
-                }
+        for(int i=0;i<lista.getAdapter().getCount();i++){
+            String[] partes;
+            partes=lista.getAdapter().getItem(i).toString().split("\n");
+            if(buscar(partes[0])){
+                lista.setItemChecked(i,true);
             }
         }
+//        for (Compras compra: MainActivity.listaCompras) {
+//            if(compra.isEstado()) {
+//                for (int i=0 ; i < MainActivity.listaProductos.size() ; i++) {
+//                    Productos p=existeProducto(adapter.getItem(i).getNombre());
+//                    if(p!=null && p.getNombre().equals(compra.getProducto().getNombre()))
+//                        lista.setItemChecked(MainActivity.listaProductos.indexOf(p),true);
+//                }
+//            }
+//        }
+    }
+    public boolean buscar(String texto){
+        for(Compras c: MainActivity.listaCompras){
+            if(c.getProducto().getNombre().toString().equals(texto))
+                return true;
+        }
+        return false;
     }
 
     public Productos existeProducto(String nombre) {
