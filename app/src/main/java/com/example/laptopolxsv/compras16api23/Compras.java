@@ -14,6 +14,10 @@ public class Compras {
         this.producto = producto;
         this.estado = estado;
     }
+    public Compras(Productos producto) {
+        this.producto = producto;
+
+    }
 
     public Productos getProducto() {
         return producto;

@@ -176,17 +176,20 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-            if (existeCompra(adapter.getItem(i).getNombre())) {
-                MainActivity.listaCompras.remove(i);
-                Toast.makeText(getBaseContext(),"Quitar",Toast.LENGTH_SHORT).show();
-                nombre[cont]="";
-                cont--;
-            } else {
-                MainActivity.listaCompras.add(new Compras(MainActivity.listaProductos.get(i), true));
-                Toast.makeText(getBaseContext(),"Agregado",Toast.LENGTH_SHORT).show();
-                nombre[cont]=MainActivity.listaProductos.get(i).getNombre();
-                cont++;
+            if (!existeCompra(adapter.getItem(i).getNombre())){
+                MainActivity.listaCompras.add(new Compras(adapter.getItem(i)));
             }
+//            if (existeCompra(adapter.getItem(i).getNombre())) {
+//                MainActivity.listaCompras.remove(i);
+//                Toast.makeText(getBaseContext(),"Quitar",Toast.LENGTH_SHORT).show();
+//                nombre[cont]="";
+//                cont--;
+//            } else {
+//                MainActivity.listaCompras.add(new Compras(MainActivity.listaProductos.get(i), true));
+//                Toast.makeText(getBaseContext(),"Agregado",Toast.LENGTH_SHORT).show();
+//                nombre[cont]=MainActivity.listaProductos.get(i).getNombre();
+//                cont++;
+//            }
 
     }
 
